@@ -1,0 +1,54 @@
+
+  <nb-card>
+    <nb-card-header>
+      <section class="pr-section pr-breadcrumbs-sec">
+        <div class="row">
+          <div class="col-10 align-self-start">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="st">Master</a></li>
+                <li class="breadcrumb-item active">
+                  <a class="st" href="pages/master/category">Category</a>
+                </li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-2">
+            <button class="btn btn-info" (click)="add()">{{buttonText}}</button>
+          </div>
+        </div>
+      </section>
+    </nb-card-header>
+    <nb-card>
+      <nb-tabset fullWidth (changeTab)="headerTextChanging($event)">
+        <nb-tab
+          tabTitle="{{ headings[0] }}"
+          badgeText="{{ subCategoryCount }}"
+          badgePosition="center right"
+          badgeStatus="danger"
+        >
+          <ngx-sub-category-list
+            [events]="subCategoryReloadEvent.asObservable()"
+            (editFromList)="edit($event)"
+            (deleteFromList)="delete($event)"
+            *ngIf="selectedTab == headings[0]"
+            (countValue)="getSubCategoryCount($event)"
+          ></ngx-sub-category-list>
+        </nb-tab>
+        <nb-tab
+          tabTitle="{{ headings[1] }}"
+          badgeText="{{ productCount }}"
+          badgePosition="center right"
+          badgeStatus="danger"
+        >
+          <ngx-product-list
+            [events]="productReloadEvent.asObservable()"
+            (editFromList)="edit($event)"
+            (deleteFromList)="delete($event)"
+            *ngIf="selectedTab == headings[1]"
+            (countValue)="getProductCount($event)"
+          ></ngx-product-list>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </nb-card>

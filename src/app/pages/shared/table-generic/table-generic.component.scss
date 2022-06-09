@@ -1,0 +1,42 @@
+.card {
+  border-radius: 15px;
+  margin: 6px;
+  padding: 0px;
+  transition: 0.3s;
+  border: none;
+}
+
+mat-cell{
+    padding:1px;
+    text-align:center
+}
+
+mat-table{
+    padding:0px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 50%;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+ border-bottom: none;
+}
+.mat-header-generic{
+    color:black;
+}
+
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type{
+padding-left: 0px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+mat-cell >p.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

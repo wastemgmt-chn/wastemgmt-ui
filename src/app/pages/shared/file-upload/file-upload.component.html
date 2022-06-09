@@ -1,0 +1,31 @@
+<div>
+  <p>{{ label }}</p>
+  <form [formGroup]="uploadForm">
+    <div class="row">
+      <div class="col-10">
+    <input
+      type="file"
+      class="form-control"
+      ng2FileSelect
+      style="padding-bottom:10%; border-radius: 5px;"
+      formControlName="file"
+      [required]="isRequired"
+      (click)="onFileClick()"
+      (change)="onFileChange($event)"
+      accept="image/png,image/jpeg"
+    />
+    <div *ngIf="isSubmit && basic.file.errors" class="text-danger">
+      <span>In-Valid File</span>
+    </div>
+   </div>
+   <div class="col-md-2" *ngIf="imageUploaded">
+    <button mat-mini-fab color="accent" class="btn" (click)="imgPreview()" >
+      <mat-icon>visibility</mat-icon>
+    </button>
+  </div>
+  </div>
+  </form>
+</div>
+<div class="text-danger">
+  <span>{{ errorMessageText }}</span>
+</div>
