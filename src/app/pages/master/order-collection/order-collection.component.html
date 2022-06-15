@@ -1,0 +1,30 @@
+<nb-card>
+  <nb-card-header>
+    <section class="pr-section pr-breadcrumbs-sec">
+      <div class="row">
+        <div class="col-11 align-self-start">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a class="st">Master</a></li>
+              <li class="breadcrumb-item active">
+                <a class="st" href="pages/master/order-collection">Order Collection</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="pr-section">
+      <div class="br21 st">
+        <div class="pr-datatable-wrap">
+          <ngx-order-collection-list  [events]="orderReloadEvent.asObservable()"
+          (editFromList)="edit($event)"></ngx-order-collection-list>
+
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
