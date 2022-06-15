@@ -69,4 +69,6 @@ export class AppConfiguration {
    //OrderCollection
    getOrderCollections="/order-collection";
    getOrderCollectionById="/order-collection/by-id?id=";
+  //address
+  deleteUserAddress='/useraddress/delete-address?id='
 }

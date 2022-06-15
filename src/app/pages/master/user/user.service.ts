@@ -39,6 +39,10 @@ export class UserService {
     );
   };
 
+  deleteUserAddress=(id)=>{
+   return this.commonHttpClientService.httpGet(this.appConfiguration.deleteUserAddress+id)
+  }
+
 
   getUserCount = () => {
     return this.commonHttpClientService.httpGet(

@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { CommonToastrService } from '../../shared/common-toastr/common-toastr.service';
 import { ResponseModalService } from '../../shared/response-modal/response-modal.service';
-import { UserAddComponent } from './user-add/user-add.component';
-import { UserService } from './user.service';
 
 @Component({
   selector: 'ngx-user',
@@ -35,9 +32,9 @@ export class UserComponent implements OnInit {
     // this.openModal(UserAddComponent, data);
   };
   edit = (rowId: any) => {
-    this.editData.id = rowId;
-    this.editData.title = "Edit User";
-    // this.router.navigate(["pages/master/user/edit/"+rowId]);
+    // this.editData.id = rowId;
+    // this.editData.title = "Edit User";
+    this.router.navigate(["pages/master/user/edit/"+rowId]);
     // this.openModal(UserAddComponent, this.editData);
   };
   openModal = (component: any, data: any) => {
