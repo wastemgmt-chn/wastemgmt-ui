@@ -26,6 +26,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: "User",
         link: "/pages/master/user",
       },
+      {
+        title: "Order Collection",
+        link: "/pages/master/order-collection",
+      },
     ],
   },
 ];

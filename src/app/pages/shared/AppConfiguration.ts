@@ -7,6 +7,7 @@ import { environment } from "../../../environments/environment";
 })
 export class AppConfiguration {
 
+
   successIconUrl = "assets/images/icons/modal-success-ico.png"
   failureIconUrl = "assets/images/icons/modal-failure-ico.png"
 
@@ -64,4 +65,8 @@ export class AppConfiguration {
 
   //roles
   getRoles="/role/roles";
+
+   //OrderCollection
+   getOrderCollections="/order-collection";
+   getOrderCollectionById="/order-collection/by-id?id=";
 }

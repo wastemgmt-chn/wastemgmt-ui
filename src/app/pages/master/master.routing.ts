@@ -16,6 +16,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("../master/user/user.module").then((m) => m.UserModule),
   },
+  {
+    path: "order-collection",
+    loadChildren: () =>
+      import("../master/order-collection/order-collection.module").then((m) => m.OrderCollectionModule),
+  },
 ];
 
 export const MasterRoutes = RouterModule.forChild(routes);
