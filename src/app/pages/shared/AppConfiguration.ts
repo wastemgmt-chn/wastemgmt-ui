@@ -64,4 +64,7 @@ export class AppConfiguration {
 
   //roles
   getRoles="/role/roles";
+
+  //address
+  deleteUserAddress='/useraddress/delete-address?id='
 }
