@@ -61,4 +61,7 @@ export class AppConfiguration {
   getUserById="/user/by-id?id=";
   saveUser="/user/save";
   getUserCount="/user/get-count";
+
+  //roles
+  getRoles="/role/roles";
 }

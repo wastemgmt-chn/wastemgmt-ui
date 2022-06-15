@@ -57,5 +57,9 @@ export class UserService {
     );
   };
 
+  getRoles(){
+    return this.commonHttpClientService.httpGet(this.appConfiguration.getRoles);
+  }
+
 
 }

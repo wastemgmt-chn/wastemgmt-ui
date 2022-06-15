@@ -27,8 +27,6 @@ export class SellerTypeAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private sellerTypeService: SellerTypeService,
     private commonToasterService: CommonToastrService,
-    private responseModalService: ResponseModalService,
-    private appConfiguration: AppConfiguration
   ) {}
 
   ngOnInit() {

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { CommonToastrService } from '../../shared/common-toastr/common-toastr.service';
 import { ResponseModalService } from '../../shared/response-modal/response-modal.service';
 import { UserAddComponent } from './user-add/user-add.component';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'ngx-user',
@@ -16,27 +19,30 @@ export class UserComponent implements OnInit {
   userReloadEvent: Subject<void> = new Subject<void>();
 
   title: string = "User";
-  buttonText: string = "User";
+  buttonText: string = "Add User";
 
   editData: any = {};
-  constructor(private responseModalService: ResponseModalService) {}
+  constructor(
+    private responseModalService: ResponseModalService,
+    private router:Router) {}
   ngOnInit(): void {}
 
   emitEventToReload = () => {
     this.userReloadEvent.next();
   };
   add = () => {
-    let data = { title: this.buttonText };
-    this.openModal(UserAddComponent, data);
+    this.router.navigate(["pages/master/user/add"]);
+    // this.openModal(UserAddComponent, data);
   };
   edit = (rowId: any) => {
     this.editData.id = rowId;
     this.editData.title = "Edit User";
-   this.openModal(UserAddComponent, this.editData);
+    // this.router.navigate(["pages/master/user/edit/"+rowId]);
+    // this.openModal(UserAddComponent, this.editData);
   };
   openModal = (component: any, data: any) => {
     this.matDialogRef = this.responseModalService.openModalSM(component, data);
-    this.matDialogRef.afterClosed().subscribe((res) => {
+    this.matDialogRef.afterClosed().subscribe(() => {
       this.emitEventToReload();
     });
   };

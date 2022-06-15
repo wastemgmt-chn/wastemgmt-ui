@@ -47,6 +47,7 @@ export class TableGenericComponent implements OnInit {
   @Input() showReset: boolean = true;
   @Input() private datatrigger: EventEmitter<any>;
   @Output() editRow = new EventEmitter();
+  @Output() status = new EventEmitter();
   @Output() detailRow = new EventEmitter();
   @Output() deleteRow = new EventEmitter();
   @Output() paginate = new EventEmitter();
@@ -90,10 +91,15 @@ export class TableGenericComponent implements OnInit {
     }
   }
 
+
   reload = (data) => {
     this.rows.data = data;
     this.rows.sort = this.sort;
   };
+
+  changeStatus=(row:any)=>{
+    this.status.emit(row);
+  }
 
   onPaginate = (pageEvent: PageEvent) => {
     this.postPerPage = +pageEvent.pageSize;
