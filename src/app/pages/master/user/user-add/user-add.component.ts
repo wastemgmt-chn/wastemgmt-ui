@@ -32,7 +32,6 @@ export class UserAddComponent implements OnInit {
   selectedRole: any = {};
   selectedProducts: any = [];
   userAddressId:any=[];
-  addressGroup:FormGroup;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -53,13 +52,13 @@ export class UserAddComponent implements OnInit {
       name: ["", [Validators.required]],
       mobileNumber: ["", [Validators.required]],
       email: ["", [Validators.required]],
-      userType: [""],
       companyName: ["", Validators.required],
       isActive: [false],
+      userType:["",Validators.required],
       sellerType:[""],
       role:[""],
       favoriteProducts:[""],
-      userAddress:this.formBuilder.array([])
+      userAddress:this.formBuilder.array([ ])
     });
   }
   getValueById(){
@@ -98,13 +97,12 @@ export class UserAddComponent implements OnInit {
     const add = this.userForm.get('userAddress') as FormArray;
     add.push(
       this.formBuilder.group({
-        id:[''],
-        doorNo: ['',Validators.required],
-        street: ['',Validators.required],
-        area:['',Validators.required],
-        postalCode:['',Validators.required],
-        latitude:['',Validators.required],
-        longitude:['',Validators.required],
+        doorNo: [""],
+        street: [""],
+        area:[""],
+        postalCode:[""],
+        latitude:[""],
+        longitude:[""],
       })
     );
   }
@@ -126,9 +124,9 @@ export class UserAddComponent implements OnInit {
       sellerType:this.selectedSellerType,
       role:this.selectedRole,
       favoriteProducts:this.selectedProducts,
-      userType:'Admin'
     })
     let Data = this.userForm.value;
+    Data.userType=Data.userType.toLowerCase();
     if (this.id) {
       Data.id = this.id;
     }
@@ -136,16 +134,15 @@ export class UserAddComponent implements OnInit {
   };
 
   sendForm = (data) => {
-    // console.log(data)
-    this.userAddressId.forEach((data:any)=>{
-      this.userService.deleteUserAddress(data).toPromise().then((data:any)=>{ });
-    })
-    if (!this.userForm.invalid) {
+       this.userAddressId.forEach((data:any)=>{
+         this.userService.deleteUserAddress(data).toPromise().then((data:any)=>{ });
+      })
+     if (!this.userForm.invalid) {
       this.userService.saveUser(data).subscribe((data: any) => {
         this.cancel();
         this.commonToasterService.showSuccess("Added Successfully", "User");
-      });
-    }
+     });
+     }
   };
 
   get basic() {
