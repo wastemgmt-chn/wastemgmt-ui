@@ -62,8 +62,18 @@
         <th>Favorite Products</th>
       </thead>
       <tbody>
-        <tr *ngFor="let fav of data.favoriteProducts">
-          <td>{{ fav?.name }}</td>
+        <tr>
+          <td *ngFor="let fav of data?.favoriteProducts">{{ fav?.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <th>Device</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td *ngFor="let device of data?.device">{{ device?.name }}</td>
         </tr>
       </tbody>
     </table>
