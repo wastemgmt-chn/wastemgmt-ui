@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonToastrService } from '../../../../shared/common-toastr/common-toastr.service';
 import { MultiSelectComponent } from '../../../../shared/multi-select/multi-select.component';
-import { trimValidator } from '../../../../shared/trim.validator';
 import { SubCategoryService } from '../../sub-category/sub-category.service';
 import { ProductService } from '../product.service';
 
@@ -13,7 +12,7 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product-add.component.scss']
 })
 export class ProductAddComponent implements OnInit {
-  @ViewChild("subCategoryMultiSelect",{static:false}) subCategoryMultiSelectComponent: MultiSelectComponent;
+  @ViewChild("subCategorySelect",{static:true}) subCategorySelect: MultiSelectComponent;
   @Output() saveEvent = new EventEmitter();
   isSubmit: boolean;
   productForm: FormGroup;
@@ -52,7 +51,7 @@ export class ProductAddComponent implements OnInit {
   }
   submitForm = () => {
     this.isSubmit = true;
-    this.subCategoryMultiSelectComponent.formInvalid();
+    this.subCategorySelect.formInvalid();
     this.saveEvent.emit(true);
     this.productForm.patchValue({
       subCategory: this.selectedSubCategory

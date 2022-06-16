@@ -80,7 +80,7 @@ export class MultiSelectComponent
         this.filterWebsiteMulti();
       });
     this.multiSelectForm = this.formBuilder.group({
-      multiSelect: [""],
+      multiSelect: [''],
     });
   }
   ngOnChanges(changes: SimpleChanges): void {
