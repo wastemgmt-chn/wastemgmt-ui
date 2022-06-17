@@ -30,6 +30,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: "Order Collection",
         link: "/pages/master/order-collection",
       },
+      {
+        title: "User Location",
+        link: "/pages/master/user-location",
+      },
     ],
   },
 ];
