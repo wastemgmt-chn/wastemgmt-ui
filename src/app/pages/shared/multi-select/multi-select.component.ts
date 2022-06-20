@@ -73,14 +73,14 @@ export class MultiSelectComponent
   constructor(public formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    // this.filteredWebsitesMulti.next(this.options.slice());
+    //  this.filteredWebsitesMulti.next(this.options.slice());
     this.websiteMultiFilterCtrl.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
         this.filterWebsiteMulti();
       });
     this.multiSelectForm = this.formBuilder.group({
-      multiSelect: [""],
+      multiSelect: [''],
     });
   }
   ngOnChanges(changes: SimpleChanges): void {

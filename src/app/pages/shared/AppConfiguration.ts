@@ -69,6 +69,18 @@ export class AppConfiguration {
    //OrderCollection
    getOrderCollections="/order-collection";
    getOrderCollectionById="/order-collection/by-id?id=";
+   saveOrderCollection="/order-collection/save";
+   getTransactionStatus="/transaction-status/transactions";
+  //address
+
+  getDashBoardCharts = "configuration/dashboard/charts";
+
+  //productBid
+  getBids="/order-collection/getProduct-bid";
+  getBidById="/order-collection/by-bid-id?id=";
+  saveBid="/order-collection/save-order-collection-product-bid"
+
+
 
   //address
   deleteUserAddress='/useraddress/delete-address?id=';

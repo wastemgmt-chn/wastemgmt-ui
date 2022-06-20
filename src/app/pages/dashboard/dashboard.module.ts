@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import {
   NbActionsModule,
   NbButtonModule,
@@ -34,7 +35,8 @@ import { MetricsComponent } from './metrics/metrics.component';
   ],
   declarations: [
     DashboardComponent,
-    MetricsComponent
+    MetricsComponent,
+
   ],
 })
 export class DashboardModule { }

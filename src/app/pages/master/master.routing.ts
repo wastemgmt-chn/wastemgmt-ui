@@ -22,9 +22,20 @@ const routes: Routes = [
       import("../master/order-collection/order-collection.module").then((m) => m.OrderCollectionModule),
   },
   {
+    path: "place-order",
+    loadChildren: () =>
+      import("../master/place-order/place-order.module").then((m) => m.PlaceOrderModule),
+
+  },
+  {
     path: "user-location",
     loadChildren: () =>
     import("../master/user-location/user-location.module").then((m) => m.UserLocationModule),
+  },
+  {
+    path: "bid",
+    loadChildren: () =>
+    import("../master/bid/bid.module").then((m) => m.BidModule),
   },
 ];
 

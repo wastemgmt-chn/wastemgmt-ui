@@ -16,7 +16,7 @@
           placeholderLabel="Find {{ label }}..."
         ></ngx-mat-select-search>
       </mat-option>
-      <mat-option *ngIf="options.length<=0"><p>No Options Available !</p></mat-option>
+      <mat-option *ngIf="options?.length<=0"><p>No Options Available !</p></mat-option>
       <mat-option
         *ngFor="let website of filteredWebsitesMulti | async"
         [value]="website"
