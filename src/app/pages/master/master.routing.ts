@@ -25,6 +25,12 @@ const routes: Routes = [
     path: "place-order",
     loadChildren: () =>
       import("../master/place-order/place-order.module").then((m) => m.PlaceOrderModule),
+
+  },
+  {
+    path: "user-location",
+    loadChildren: () =>
+    import("../master/user-location/user-location.module").then((m) => m.UserLocationModule),
   },
 ];
 
