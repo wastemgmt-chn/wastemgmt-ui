@@ -32,6 +32,11 @@ const routes: Routes = [
     loadChildren: () =>
     import("../master/user-location/user-location.module").then((m) => m.UserLocationModule),
   },
+  {
+    path: "bid",
+    loadChildren: () =>
+    import("../master/bid/bid.module").then((m) => m.BidModule),
+  },
 ];
 
 export const MasterRoutes = RouterModule.forChild(routes);

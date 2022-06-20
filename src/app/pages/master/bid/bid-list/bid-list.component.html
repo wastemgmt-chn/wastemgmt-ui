@@ -1,0 +1,5 @@
+<table-generic [count]="count" [displayedColumns]="displayedColumns" [definedColumns]="definedColumns" [searchColumns]="searchColumns"
+               [canShowSearch]="true" [data]="bids" [isAction]="true" [datatrigger]="datatrigger" (editRow)='edit($event)'
+               (paginate)='onPaginate($event)' [isEdit]="false" (searchEvent)='onSearch($event)' (deleteRow)='deleteConfirm($event)'>
+</table-generic>
+

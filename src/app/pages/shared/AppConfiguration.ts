@@ -76,6 +76,11 @@ export class AppConfiguration {
 
   getDashBoardCharts = "configuration/dashboard/charts";
 
+  //productBid
+  getBids="/order-collection/getProduct-bid";
+  getBidById="/order-collection/by-bid-id?id=";
+  saveBid="/order-collection/save-order-collection-product-bid"
+
 
 
 }

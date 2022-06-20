@@ -38,6 +38,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: "User Location",
         link: "/pages/master/user-location",
       },
+      {
+        title: "Bid",
+        link: "/pages/master/bid",
+      },
     ],
   },
 ];
