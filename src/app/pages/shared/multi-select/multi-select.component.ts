@@ -73,7 +73,7 @@ export class MultiSelectComponent
   constructor(public formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    // this.filteredWebsitesMulti.next(this.options.slice());
+    //  this.filteredWebsitesMulti.next(this.options.slice());
     this.websiteMultiFilterCtrl.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {

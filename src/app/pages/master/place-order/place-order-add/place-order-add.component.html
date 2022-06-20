@@ -1,0 +1,153 @@
+<nb-card>
+  <nb-card-header>
+    <section class="pr-section pr-breadcrumbs-sec">
+      <div class="row">
+        <div class="col-12 align-self-start">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a class="st">Master</a></li>
+              <li class="breadcrumb-item active">
+                <a class="st" href="pages/master/place-order">Order</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a class="st" href="pages/master/place-order/add">Add</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="pr-section">
+      <div class="br21 st">
+        <div class="pr-datatable-wrap">
+          <form [formGroup]="orderForm">
+            <div class="modal-body">
+              <div class="row">
+                <div class="form-group col-lg-3">
+                  <app-multi-select
+                    #productMultiSelect
+                    isMultiSelect="false"
+                    [options]="sellers"
+                    label="Seller Name"
+                    [isSubmit]="isSubmit"
+                    isRequired="true"
+                    [(dropDownValue)]="selectedSeller"
+                    (dropDownValueChange)="onSellerChange($event)">
+                  ></app-multi-select>
+                </div>
+                <div class="form-group col-lg-3">
+                  <app-multi-select
+                    #transactionMultiSelect
+                    isMultiSelect="false"
+                    [options]="transactions"
+                    label="Transaction Status"
+                    [isSubmit]="isSubmit"
+                    isRequired="true"
+                    [(dropDownValue)]="selectedTransaction"
+                  ></app-multi-select>
+                </div>
+                <div class="form-group col-lg-3">
+                  <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
+                    <mat-label>Latitude</mat-label>
+                    <input matInput type="number" name="latitude" formControlName="latitude" />
+                    <mat-error *ngIf="basic.latitude.hasError('required')"
+                      >latitude is required</mat-error
+                    >
+                   </mat-form-field>
+                 </div>
+                 <div class="form-group col-lg-3">
+                  <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
+                    <mat-label>Longitude</mat-label>
+                    <input matInput type="number" name="longitude" formControlName="longitude" />
+                    <mat-error *ngIf="basic.longitude.hasError('required')"
+                      >longitude is required</mat-error
+                    >
+                   </mat-form-field>
+                 </div>
+                 <div class="form-group col-md-3" style="padding-top: 20px;">
+                  <div>
+                    <mat-slide-toggle formControlName="isCompleted">Is Completed</mat-slide-toggle>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </form>
+            </div>
+            </div>
+            </div>
+           </nb-card-body>
+           <nb-card-body>
+            <div class="pr-datatable-wrap">
+              <div class="row">
+                  <div class="form-group col-md-3">
+                    <div appearance="fill"class="full-width" >
+                      <app-multi-select
+                        #productMultiSelect
+                        isMultiSelect="false"
+                        [options]="products"
+                        label="Product"
+                        [isSubmit]="isSubmit"
+                        [(dropDownValue)]="selectedProduct">
+                      </app-multi-select>
+                    </div>
+                  </div>
+                   <div class="form-group col-lg-2">
+                    <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
+                      <mat-label>Weight</mat-label>
+                      <input matInput type="number" name="weight" [(ngModel)]="weight" />
+                     </mat-form-field>
+                   </div>
+                   <div class="form-group col-lg-2">
+                    <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
+                      <mat-label>Amount</mat-label>
+                      <input matInput type="number" name="amount" [(ngModel)]="amount" />
+                     </mat-form-field>
+                   </div>
+                   <div class="form-group col-lg-2">
+                    <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
+                      <mat-label>ImageLink</mat-label>
+                      <input matInput type="text" name="imageLink" [(ngModel)]="imageLink" />
+                     </mat-form-field>
+                   </div>
+                   <div class="form-group col-lg-3">
+                    <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
+                      <mat-label>comment</mat-label>
+                      <input matInput type="text" name="comment" [(ngModel)]="comment" />
+                     </mat-form-field>
+                   </div>
+                   <div class="form-group col-md-3">
+                    <button class="btn btn-primary waves-effect waves-light mr-1" type="button" (click)="addOrderDetails()">
+                      Add
+                    </button>
+                  </div>
+              </div>
+              </div>
+              <div class="form-group col-md-12" [ngStyle]="{'display': showOrderDetails ? 'block' : 'none' }">
+                <ngx-place-order-detail
+                  #orderDetails
+                  [data]="orderDetails"
+                  (editFromList)="edit($event)"
+                  (deleteRow)="deleteConfirm($event)">
+                </ngx-place-order-detail>
+              </div>
+            <div class="modal-footer">
+              <div class="form-group text-right mb-0">
+                <button
+                  class="btn btn-primary waves-effect waves-light mr-1"
+                  type="submit"
+                  (click)="submitForm()"
+                >
+                  Submit
+                </button>
+                <button
+                  (click)="cancel()"
+                  class="btn btn-secondary waves-effect waves-light"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+  </nb-card-body>
+</nb-card>
