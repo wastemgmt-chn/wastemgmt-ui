@@ -87,4 +87,7 @@ export class AppConfiguration {
   deleteUserAddress='/useraddress/delete-address?id=';
   getAllUserAddress="/useraddress/userAddresses";
 
+  //charts
+  getCharts="/chart/charts";
+
 }
