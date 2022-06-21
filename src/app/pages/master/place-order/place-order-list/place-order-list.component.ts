@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ResponseModalService } from '../../../shared/response-modal/response-modal.service';
-import { OrderCollectionDetailComponent } from '../../order-collection/order-collection-detail/order-collection-detail.component';
-import { OrderCollectionService } from '../../order-collection/order-collection.service';
 import { PlaceOrderDetailPageComponent } from '../place-order-detail-page/place-order-detail-page.component';
 import { PlaceOrderService } from '../place-order.service';
 
