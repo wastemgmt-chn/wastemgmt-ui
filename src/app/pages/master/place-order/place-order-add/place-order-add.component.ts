@@ -27,8 +27,7 @@ export class PlaceOrderAddComponent implements OnInit {
   sellers:any=[];
   selectedProduct={};
   selectedSeller={};
-  selectedTransaction={};
-  editData: any;
+    editData: any;
   editcall:boolean=false;
   deleteData: any;
   deleteArray:any[]=[];
@@ -43,7 +42,6 @@ selectedDetailId:any;
 tempId:String;
 public guidId: Guid;
 orderDetail:any=[];
-transactions:any=[];
 
 
   constructor(
@@ -58,13 +56,11 @@ transactions:any=[];
 
   ngOnInit() {
     this.getSellers();
-    this.getTransactionStatus();
     this.orderForm = this.formBuilder.group({
       seller: ["", [Validators.required]],
       latitude: ["", [Validators.required]],
       longitude: ["", [Validators.required]],
       isCompleted: ["", [Validators.required]],
-      transactionStatus: ["", [Validators.required]],
     });
     this.getValueById();
     this.getSellers();
@@ -81,11 +77,6 @@ transactions:any=[];
      });
    }
 
-   getTransactionStatus=()=>{
-    this.placeOrderService.getTransactionStatus().toPromise().then((data:any)=>{
-      this.transactions=data;
-    })
-   }
 
    onSellerChange=(event)=>{
     this.products=[];
@@ -98,13 +89,11 @@ transactions:any=[];
     if(!!this.id){
       this.placeOrderService.getOrderCollectionById(this.id).toPromise().then((data:any)=>{
         this.selectedSeller=data?.seller;
-        this.selectedTransaction=data?.transactionStatus;
         this.orderForm.patchValue({
           seller:data?.seller,
           latitude:data?.latitude,
           longitude:data?.longitude,
           isCompleted:data?.isCompleted,
-          transactionStatus:data?.transactionStatus,
         })
         data?.orderCollectionDetail.forEach(element => {
           let datas = {
@@ -129,7 +118,6 @@ transactions:any=[];
     this.saveEvent.emit(true);
     this.orderForm.patchValue({
       seller:this.selectedSeller,
-      transactionStatus:this.selectedTransaction
     })
     let data = this.orderForm.value;
     if (this.id) {

@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Data } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ResponseModalService } from '../../shared/response-modal/response-modal.service';
 import { UserDetailComponent } from '../user/user-detail/user-detail.component';
 import { UserService } from '../user/user.service';
+
+
 
 @Component({
   selector: 'ngx-user-location',
   templateUrl: './user-location.component.html',
   styleUrls: ['./user-location.component.scss']
-
 })
 export class UserLocationComponent implements OnInit {
   matDialogRef: MatDialogRef<any>;
@@ -24,8 +24,7 @@ export class UserLocationComponent implements OnInit {
   userAddress:any=[];
 
 
-
- zoom= 4;
+   zoom= 10;
 
   markers:any = [];
   data: any;
@@ -39,24 +38,23 @@ export class UserLocationComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
-console.log(this.markers)  }
+    this.lat=13.0827;
+    this.lng=80.2707;
+    this.markers.push({lat:13.0827,lng:80.2707})
+  }
   getUsers = () => {
-    this.userService.getAllUserAddress().toPromise().then((data:any[])=>{
-      this.userAddress=data;
-      data.forEach((element:any) => {
-        let coordinates={
-          lat:element?.latitude,
-          lng:element?.longitude
-        }
-        this.markers.push(coordinates);
-      });
-    })
-
-
-
+    // this.userService.getAllUserAddress().toPromise().then((data:any[])=>{
+    //   this.userAddress=data;
+    //   data.forEach((element:any) => {
+    //     let coordinates={
+    //       lat:13,
+    //       lng:27
+    //     }
+    //     this.markers.push(coordinates);
+    //   });
+    // })
 
   }
-
 
 
   clickedMarker(infoWindow: any, index: number) {
