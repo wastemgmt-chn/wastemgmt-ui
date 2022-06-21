@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ResponseModalService } from '../../../shared/response-modal/response-modal.service';
 import { BidAddComponent } from '../../bid/bid-add/bid-add.component';
+import { PlaceOrderService } from '../place-order.service';
 
 @Component({
   selector: 'ngx-place-order-detail-page',
@@ -14,16 +15,26 @@ export class PlaceOrderDetailPageComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
  public dialogRef: MatDialogRef<any>,
  public responseModalService:ResponseModalService,
+ private placeOrderService:PlaceOrderService
  ) { }
 
  detailData:any;
+ bids:any=[];
 
  ngOnInit() {
    this.detailData=this.data;
+   this.getBids(this.data?.id)
  }
 
  close(){
    this.dialogRef.close(true);
+ }
+
+ getBids=(id:any)=>{
+     this.placeOrderService.getBidsByOrderId(id).toPromise().then((data:any[])=>{
+      this.bids=data;
+     })
+
  }
 
  createBid(detail){

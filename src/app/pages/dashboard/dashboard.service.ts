@@ -26,7 +26,7 @@ constructor(   private commonHttpClientService: CommonHttpClientService,
 
   getDashBoardChart = () => {
     return this.commonHttpClientService.httpGet(
-      this.appConfiguration.getDashBoardCharts
+      this.appConfiguration.getCharts
     );
   };
 

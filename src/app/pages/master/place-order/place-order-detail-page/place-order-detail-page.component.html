@@ -30,9 +30,11 @@
           <td>{{ detail?.amount }}</td>
           <!-- <td>{{ detail?.imageLink }}</td> -->
           <td>{{ detail?.comment }}</td>
+          <td></td>
           <td><button class="btn btn-info bt-sm" type="button" (click)="createBid(detail)">Bid</button></td>
         </tr>
       </tbody>
     </table>
+    {{bids}}
   </nb-card-body>
 </nb-card>

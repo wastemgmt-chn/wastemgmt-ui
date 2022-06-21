@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { DashboardService } from "../dashboard.service";
-import * as Highcharts from "highcharts";
 
 @Component({
   selector: "ngx-chart",
@@ -13,53 +12,26 @@ export class ChartComponent implements OnInit {
   myCustomOptions: any = {};
   chart: any = [];
   chartArray: any = [];
+  jsonData:any=[];
 
-  jsonData: any = [
-    {
-      type: "column",
-      title: "Order Detail",
-      xaxis: "x-name",
-      yaxis: "y-name",
-      series: [
-        { name: "Plastic", data: [21] },
-        { name: "Rubber", data: [32] },
-        { name: "Paper", data: [19] },
-      ],
-    },
-    {
-      type: "column",
-      title: "Buyer Detail",
-      xaxis: "x-name",
-      yaxis: "y-name",
-      series: [
-        { name: "Plastic", data: [2] },
-        { name: "Rubber", data: [3] },
-        { name: "Paper", data: [9] },
-      ],
-    },
-    {
-      type: "column",
-      title: "Seller Detail",
-      xaxis: "x-name",
-      yaxis: "y-name",
-      series: [
-        { name: "Plastic", data: [23] },
-        { name: "Rubber", data: [2] },
-        { name: "Paper", data: [11] },
-      ],
-    },
-  ];
+  constructor(private dashboardService: DashboardService) {
 
-  constructor(private dashboardService: DashboardService) {}
-  ngOnInit() {
-    this.prepareChart();
-    this.getChart();
   }
-  prepareChart = () => {
-    this.jsonData.forEach((data: any) => {
+  ngOnInit() {
+    this.getChartData();
+
+  }
+  getChartData(){
+    this.dashboardService.getDashBoardChart().toPromise().then((data:any[])=>{
+        this.jsonData=data;
+        this.prepareChart(this.jsonData);
+    })
+  }
+  prepareChart = (jsonData) => {
+    jsonData.forEach((chartData) => {
       let defaultOptions: any = {
         chart: {
-          type: "",
+          type: "column",
         },
         csscharts: "col-lg-6",
         title: {
@@ -68,38 +40,25 @@ export class ChartComponent implements OnInit {
         xAxis: {
           min: 0,
           title: {
-            text: "",
+            text: "x-name",
           },
         },
         yAxis: {
           min: 0,
           title: {
-            text: "",
-          },
-        },
-        tackLabels: {
-          enabled: true,
-          style: {
-            fontWeight: "bold",
-            color:
-              (Highcharts.defaultOptions.title.style &&
-                Highcharts.defaultOptions.title.style.color) ||
-              "gray",
-            textOutline: "none",
+            text: "y-name",
           },
         },
         series: [],
       };
-        (defaultOptions.title.text = data?.title),
-        (defaultOptions.chart.type = data?.type),
-        (defaultOptions.series = data?.series);
+        defaultOptions.title.text = chartData?.title,
+        defaultOptions.series = chartData?.series;
       this.chartArray.push(defaultOptions);
     });
+    this.getChart();
   };
 
   getChart = () => {
-    console.log(this.chartArray);
-    //  this.dashboardService.getDashBoardChart().toPromise().then((data: any)=>{
     this.chart = this.chartArray;
     this.chart.forEach((chartData) => {
       this.myCustomOptions = chartData;
@@ -107,7 +66,6 @@ export class ChartComponent implements OnInit {
         column: { stacking: "", dataLabels: { enabled: true } },
       };
       this.createCustomChart(this.myCustomOptions, chartData?.csscharts);
-      //  });
     });
   };
   createCustomChart(myOpts: any, className?: string) {

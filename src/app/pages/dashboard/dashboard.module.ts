@@ -16,6 +16,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { MetricsComponent } from './metrics/metrics.component';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { MetricsComponent } from './metrics/metrics.component';
   declarations: [
     DashboardComponent,
     MetricsComponent,
+    ChartComponent
 
   ],
 })
