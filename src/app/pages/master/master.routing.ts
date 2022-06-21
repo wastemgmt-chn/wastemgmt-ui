@@ -17,11 +17,6 @@ const routes: Routes = [
       import("../master/user/user.module").then((m) => m.UserModule),
   },
   {
-    path: "order-collection",
-    loadChildren: () =>
-      import("../master/order-collection/order-collection.module").then((m) => m.OrderCollectionModule),
-  },
-  {
     path: "place-order",
     loadChildren: () =>
       import("../master/place-order/place-order.module").then((m) => m.PlaceOrderModule),
