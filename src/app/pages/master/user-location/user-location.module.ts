@@ -11,8 +11,9 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     UserLocationRoutes,
     SharedModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA4F9JYoct7v7oGvirzAx7_oK6XkNyL1oM'
+     AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA4F9JYoct7v7oGvirzAx7_oK6XkNyL1oM',
+      language: "en",
     })
 
   ],

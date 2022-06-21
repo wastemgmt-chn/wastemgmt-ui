@@ -38,17 +38,6 @@
                   ></app-multi-select>
                 </div>
                 <div class="form-group col-lg-3">
-                  <app-multi-select
-                    #transactionMultiSelect
-                    isMultiSelect="false"
-                    [options]="transactions"
-                    label="Transaction Status"
-                    [isSubmit]="isSubmit"
-                    isRequired="true"
-                    [(dropDownValue)]="selectedTransaction"
-                  ></app-multi-select>
-                </div>
-                <div class="form-group col-lg-3">
                   <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
                     <mat-label>Latitude</mat-label>
                     <input matInput type="number" name="latitude" formControlName="latitude" />
