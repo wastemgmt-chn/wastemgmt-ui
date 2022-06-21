@@ -1,5 +1,5 @@
 <div class="modal-header no-header">
-  <h1 class="page-ttl">{{ title }}</h1>
+  <h1 class="page-ttl">Add Bid</h1>
   <div
     type="button"
     class="close"
@@ -23,7 +23,7 @@
           [isSubmit]="isSubmit"
           isRequired="true"
           [(dropDownValue)]="selectedSeller"
-        ></app-multi-select>
+></app-multi-select>
       </div>
       <div class="form-group col-lg-3">
         <app-multi-select
@@ -36,6 +36,18 @@
           [(dropDownValue)]="selectedBuyer"
         ></app-multi-select>
       </div>
+      <div class="form-group col-lg-2">
+        <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
+          <mat-label>Weight</mat-label>
+          <input matInput type="number" name="weight" formControlName="weight" />
+         </mat-form-field>
+       </div>
+       <div class="form-group col-lg-2">
+        <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
+          <mat-label>Amount</mat-label>
+          <input matInput type="number" name="amount"formControlName="amount" />
+         </mat-form-field>
+       </div>
     </div>
   </div>
   <div class="modal-footer">

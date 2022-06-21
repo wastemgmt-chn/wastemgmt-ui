@@ -37,6 +37,9 @@ export class BidAddComponent implements OnInit {
     this.getUsers();
     this.sellerForm = this.formBuilder.group({
       seller: ["", [Validators.required]],
+      buyer:["",Validators.required],
+      weight:["",Validators.required],
+      amount:["",Validators.required]
     });
     if (this.data.id) {
       console.log(this.data)
@@ -50,11 +53,19 @@ export class BidAddComponent implements OnInit {
   submitForm = () => {
     this.isSubmit = true;
     this.saveEvent.emit(true);
-    let Data = this.sellerForm.value;
-    if (this.id) {
-      Data.id = this.id;
+    this.sellerForm.patchValue({
+      seller:this.selectedSeller,
+      buyer:this.selectedBuyer
+    })
+    let bidData = this.sellerForm.value;
+    bidData.bidStatus=0;
+    // if (this.id) {
+    //   bidData.id = this.id;
+    // }
+    bidData.orderCollectionDetail={
+      id:this.data?.id
     }
-    this.sendForm(Data);
+    this.sendForm(bidData);
   };
 
   getUsers=()=>{
