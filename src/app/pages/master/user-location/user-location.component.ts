@@ -40,19 +40,20 @@ export class UserLocationComponent implements OnInit {
     this.getUsers();
     this.lat=13.0827;
     this.lng=80.2707;
-    this.markers.push({lat:13.0827,lng:80.2707})
+    // this.markers.push({lat:13.0827,lng:80.2707})
   }
   getUsers = () => {
-    // this.userService.getAllUserAddress().toPromise().then((data:any[])=>{
-    //   this.userAddress=data;
-    //   data.forEach((element:any) => {
-    //     let coordinates={
-    //       lat:13,
-    //       lng:27
-    //     }
-    //     this.markers.push(coordinates);
-    //   });
-    // })
+    this.userService.getAllUserAddress().toPromise().then((data:any[])=>{
+      this.userAddress=data;
+      data.forEach((element:any) => {
+        let coordinates={
+          lat:element?.latitude,
+          lng:element?.longitude,
+          label:element?.user?.name
+        }
+        this.markers.push(coordinates);
+      });
+    })
 
   }
 
