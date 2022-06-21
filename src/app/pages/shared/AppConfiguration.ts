@@ -78,7 +78,8 @@ export class AppConfiguration {
   //productBid
   getBids="/order-collection/getProduct-bid";
   getBidById="/order-collection/by-bid-id?id=";
-  saveBid="/order-collection/save-order-collection-product-bid"
+  saveBid="/order-collection/save-order-collection-product-bid";
+  getBidsByOrderId="/order-collection/get-bids-by-order?id=";
 
 
 
