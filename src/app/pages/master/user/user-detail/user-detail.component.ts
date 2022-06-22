@@ -11,7 +11,6 @@ export class UserDetailComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<any>) { }
-
   detailData:any;
 
   ngOnInit() {
