@@ -7,19 +7,22 @@ import { PlaceOrderAddComponent } from './place-order-add/place-order-add.compon
 import { SharedModule } from '../../shared/shared.module';
 import { PlaceOrderDetailComponent } from './place-order-detail/place-order-detail.component';
 import { PlaceOrderDetailPageComponent } from './place-order-detail-page/place-order-detail-page.component';
+import { DetailPageComponent } from './detail-page/detail-page.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     PlaceOrderRoutes,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     PlaceOrderComponent,
     PlaceOrderListComponent,
     PlaceOrderAddComponent,
     PlaceOrderDetailComponent,
-    PlaceOrderDetailPageComponent
+    PlaceOrderDetailPageComponent,
+    DetailPageComponent
   ]
 })
 export class PlaceOrderModule { }

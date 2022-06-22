@@ -45,9 +45,11 @@ export class BidAddComponent implements OnInit {
     });
     if (this.data.id) {
       console.log(this.data)
-        this.selectedSeller=this.data?.orderCollection?.seller;
+        this.selectedSeller=this.data?.detailData?.orderCollection?.seller;
         this.sellerForm.patchValue({
           seller: this.selectedSeller,
+          weight:this.data?.detailData?.weight,
+          amount:this.data?.detailData?.amount
         });
     }
     this.isSubmit = false;

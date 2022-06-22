@@ -14,7 +14,7 @@
 <form [formGroup]="sellerForm">
   <div class="modal-body">
     <div class="row">
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-6">
         <app-multi-select
           #productMultiSelect
           isMultiSelect="false"
@@ -25,7 +25,7 @@
           [(dropDownValue)]="selectedSeller"
 ></app-multi-select>
       </div>
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-6">
         <app-multi-select
           #productMultiSelect
           isMultiSelect="false"
@@ -36,13 +36,13 @@
           [(dropDownValue)]="selectedBuyer"
         ></app-multi-select>
       </div>
-      <div class="form-group col-lg-2">
+      <div class="form-group col-lg-6">
         <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
           <mat-label>Weight</mat-label>
           <input matInput type="number" name="weight" formControlName="weight" />
          </mat-form-field>
        </div>
-       <div class="form-group col-lg-2">
+       <div class="form-group col-lg-6">
         <mat-form-field appearance="fill" class="full-width" style="width: 100%;">
           <mat-label>Amount</mat-label>
           <input matInput type="number" name="amount"formControlName="amount" />
