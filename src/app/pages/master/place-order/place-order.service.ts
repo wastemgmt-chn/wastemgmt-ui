@@ -45,7 +45,7 @@ saveOrderCollection = (data) => {
 
 getBidsByOrderId = (id:string) => {
   return this.commonHttpClientService.httpGet(
-    this.appConfiguration.getBidById + id
+    this.appConfiguration.getBidsByOrderId + id
   );
 };
 

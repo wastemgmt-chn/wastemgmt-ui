@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription, Observable } from 'rxjs';
+import { PlaceOrderService } from '../../place-order/place-order.service';
 import { SellerTypeService } from '../../seller-type/seller-type.service';
 import { BidService } from '../bid.service';
 
@@ -27,7 +28,8 @@ export class BidListComponent implements OnInit {
   count: number = 0;
   bids: any[] = [];
   filters: any[] = [];
-  constructor(private bidService: BidService) {}
+  constructor(private bidService: BidService,
+    private placeOrderService:PlaceOrderService) {}
 
   ngOnInit(): void {
     this.eventsSubscription = this.events.subscribe((data) => {
@@ -38,6 +40,7 @@ export class BidListComponent implements OnInit {
     });
     this.loadData();
   }
+
 
   loadData = () => {
     this.bidService

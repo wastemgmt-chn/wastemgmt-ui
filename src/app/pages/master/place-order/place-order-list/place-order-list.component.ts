@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ResponseModalService } from '../../../shared/response-modal/response-modal.service';
+import { DetailPageComponent } from '../detail-page/detail-page.component';
 import { PlaceOrderDetailPageComponent } from '../place-order-detail-page/place-order-detail-page.component';
 import { PlaceOrderService } from '../place-order.service';
 
@@ -35,6 +36,7 @@ export class PlaceOrderListComponent implements OnInit {
     private responseModalService:ResponseModalService) { }
 
   ngOnInit() {
+    this.getBidsByOrder('4c31791e4e')
     this.eventsSubscription = this.events.subscribe((data) => {
       if (data != undefined) {
         this.filters.push(data);
@@ -42,6 +44,11 @@ export class PlaceOrderListComponent implements OnInit {
       this.loadData();
     });
     this.loadData();
+  }
+  getBidsByOrder(id){
+    this.placeOrderService.getBidsByOrderId(id).toPromise().then((data:any)=>{
+      // console.log(data)
+    })
   }
 
   loadData = () => {
@@ -65,7 +72,7 @@ export class PlaceOrderListComponent implements OnInit {
 
   detail=(event)=>{
       this.placeOrderService.getOrderCollectionById(event).toPromise().then((data:any[])=>{
-        this.responseModalService.openModalRight(PlaceOrderDetailPageComponent,data);
+        this.responseModalService.openModalRight(DetailPageComponent,data);
       })
 
 

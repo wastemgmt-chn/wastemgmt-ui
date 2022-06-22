@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ResponseModalService } from '../../../shared/response-modal/response-modal.service';
 import { BidAddComponent } from '../../bid/bid-add/bid-add.component';
@@ -17,6 +17,7 @@ export class PlaceOrderDetailPageComponent implements OnInit {
  public matdialogRef: MatDialogRef<any>,
  public responseModalService:ResponseModalService,
  private placeOrderService:PlaceOrderService,
+ private matDialog :MatDialog,
  private router:Router
  ) { }
 
@@ -29,7 +30,7 @@ export class PlaceOrderDetailPageComponent implements OnInit {
  }
 
  close(){
-   this.matdialogRef.close(true);
+  this.matDialog.closeAll();
   }
 
  getBids=(id:any)=>{
