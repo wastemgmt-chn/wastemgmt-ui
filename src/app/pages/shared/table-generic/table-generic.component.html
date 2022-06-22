@@ -13,6 +13,22 @@
   >
     <mat-header-cell *matHeaderCellDef>
       <table>
+        <td>
+          <tr>
+            <div class="form-group col-6" *ngIf="searchColumns[i]?.canShow">
+              <div class="row">
+               <input
+                 type="text"
+                 class="form-control"
+                 formcontrolname="{{ searchColumns[i]?.name }}"
+                 id="{{ searchColumns[i]?.name }}"
+                 (keyup)="search($event)"
+                 autocomplete="off"
+               />
+              </div>
+            </div>
+          </tr>
+        </td>
         <tr>
           <th mat-header-cell mat-sort-header>
             <b
@@ -23,18 +39,6 @@
           </th>
         </tr>
         <tr>
-          <div class="form-group col-6" *ngIf="searchColumns[i]?.canShow">
-            <div class="row">
-             <input
-               type="text"
-               class="form-control"
-               formcontrolname="{{ searchColumns[i]?.name }}"
-               id="{{ searchColumns[i]?.name }}"
-               (keyup)="search($event)"
-               autocomplete="off"
-             />
-            </div>
-          </div>
         </tr>
       </table>
     </mat-header-cell>

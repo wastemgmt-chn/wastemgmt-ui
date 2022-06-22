@@ -23,7 +23,7 @@ export class UserListComponent implements OnInit {
   displayedColumns: string[] = ["Name", "Mobile Number", "User Type", "status", "actions"];
   searchColumns: any[] = [
     { name: "name", canShow: true },
-    { name: "mobileNumber", canShow: false },
+    { name: "mobileNumber", canShow: true },
     { name: "userType", canShow: true },
 
   ];
