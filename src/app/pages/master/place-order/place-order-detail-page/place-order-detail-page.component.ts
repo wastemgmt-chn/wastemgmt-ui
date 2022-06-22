@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ResponseModalService } from '../../../shared/response-modal/response-modal.service';
 import { BidAddComponent } from '../../bid/bid-add/bid-add.component';
 import { PlaceOrderService } from '../place-order.service';
@@ -13,9 +14,10 @@ export class PlaceOrderDetailPageComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
- public dialogRef: MatDialogRef<any>,
+ public matdialogRef: MatDialogRef<any>,
  public responseModalService:ResponseModalService,
- private placeOrderService:PlaceOrderService
+ private placeOrderService:PlaceOrderService,
+ private router:Router
  ) { }
 
  detailData:any;
@@ -27,8 +29,8 @@ export class PlaceOrderDetailPageComponent implements OnInit {
  }
 
  close(){
-   this.dialogRef.close(true);
- }
+   this.matdialogRef.close(true);
+  }
 
  getBids=(id:any)=>{
      this.placeOrderService.getBidsByOrderId(id).toPromise().then((data:any[])=>{
@@ -42,8 +44,8 @@ export class PlaceOrderDetailPageComponent implements OnInit {
  }
 
  openModal = (component: any, data: any) => {
-  this.dialogRef = this.responseModalService.openModalMD(component, data);
-  this.dialogRef.afterClosed().subscribe((res) => {
+  this.matdialogRef = this.responseModalService.openModalMD(component, data);
+  this.matdialogRef.afterClosed().subscribe((res) => {
   });
 };
 

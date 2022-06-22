@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { CommonToastrService } from '../../../shared/common-toastr/common-toastr.service';
 import { SellerTypeService } from '../../seller-type/seller-type.service';
 import { UserService } from '../../user/user.service';
@@ -30,7 +31,8 @@ export class BidAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private bidsService: BidService,
     private commonToasterService: CommonToastrService,
-    private userService:UserService
+    private userService:UserService,
+    private router:Router
   ) {}
 
   ngOnInit() {
