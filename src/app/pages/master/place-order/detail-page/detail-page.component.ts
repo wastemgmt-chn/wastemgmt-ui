@@ -150,6 +150,7 @@ export class DetailPageComponent implements OnInit {
 }
 
 export interface Order {
+  id:string;
   product: string;
   weight: string;
   amount: string;
@@ -165,6 +166,7 @@ export interface Bids {
 }
 
 export interface OrderDataSource {
+  id:string;
   product: string;
   weight: string;
   amount: string;
