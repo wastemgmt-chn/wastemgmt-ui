@@ -27,7 +27,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: "/pages/master/user",
       },
       {
-        title: "Place Order ",
+        title: "Order Collection",
         link: "/pages/master/place-order",
       },
       {
