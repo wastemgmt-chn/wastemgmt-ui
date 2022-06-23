@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { Dropdown } from '../../shared/dynamic-forms/dropdown';
+import { DynamicFormBase } from '../../shared/dynamic-forms/dynamic-form-base';
 import { ResponseModalService } from '../../shared/response-modal/response-modal.service';
 import { PlaceOrderAddComponent } from './place-order-add/place-order-add.component';
 
@@ -12,30 +15,21 @@ import { PlaceOrderAddComponent } from './place-order-add/place-order-add.compon
 })
 export class PlaceOrderComponent implements OnInit {
   matDialogRef: MatDialogRef<any>;
-  //Trigger reload to list
   orderReloadEvent: Subject<void> = new Subject<void>();
-  //Page Header
-  title: string = "Order";            //To set the title for page header
-  buttonText: string = "Add Order";   //To set the add button text for page header
-  //Form
-  editData: any = {};                  //Send edit data to add component
+  cardArray: any[] = [];
+  title: string = "Order";
+  buttonText: string = "Add Order";
+  editData: any = {};
   constructor(private responseModalService: ResponseModalService,private router:Router) {}
   ngOnInit(): void {}
   add = () => {
     this.router.navigate(["pages/master/place-order/add"]);
-
-    // let data = { title: this.buttonText };
-    // this.openModal(PlaceOrderAddComponent, data);
   };
   emitEventToReload = () => {
     this.orderReloadEvent.next();
   };
   edit = (rowId: any) => {
-    this.router.navigate(["pages/master/place-order/edit/"+rowId]);
-
-    // this.editData.id = rowId;
-    // this.editData.title = "Edit Order";
-    // this.openModal(PlaceOrderAddComponent, this.editData);
+    this.router.navigate(["pages/master/place-order/edit/"+rowId])
   };
   openModal = (component: any, data: any) => {
     this.matDialogRef = this.responseModalService.openModalSM(component, data);
@@ -46,6 +40,7 @@ export class PlaceOrderComponent implements OnInit {
   search = (text) => {
     this.orderReloadEvent.next(text);
   };
+
 
 
 }

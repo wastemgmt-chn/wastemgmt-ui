@@ -32,26 +32,6 @@ export class DetailPageComponent implements OnInit {
   innerDisplayedColumns = ['buyer', 'seller', 'weight','amount'];
   expandedElement: Order | null;
   ORDERS: Order[] = [];
-  // ORDERS: Order[] = [
-  //   {
-  //     product: "Mason",
-  //     weight: "mason@test.com",
-  //     amount: "9864785214",
-  //     bids: [
-  //       {
-  //         buyer: "Street 1",
-  //         seller: "78542",
-  //         weight: "Kansas"
-  //       },
-  //       {
-  //         buyer: "Street 2",
-  //         seller: "78554",
-  //         weight: "Texas"
-  //       }
-  //     ]
-  //   }
-  // ];
-
   bids=[
     {
       buyer:"dinesh" ,

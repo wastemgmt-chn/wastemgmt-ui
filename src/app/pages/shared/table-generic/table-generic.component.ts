@@ -8,15 +8,15 @@ import {
   TemplateRef,
   Input,
   ElementRef,
+  ViewChildren,
+  QueryList,
 } from "@angular/core";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatTable, MatTableDataSource } from "@angular/material/table";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
-import { Subscription, Observable } from "rxjs";
+import { Subscription } from "rxjs";
 import { Page } from "./Page";
 import { MatSort, Sort } from "@angular/material/sort";
-import { debounce } from "lodash";
 import { MatDialogRef } from "@angular/material/dialog";
-import { analyzeAndValidateNgModules } from "@angular/compiler";
 import { LiveAnnouncer } from "@angular/cdk/a11y";
 import { ActionPopupComponent } from "../action-popup/action-popup.component";
 import { ResponseModalService } from "../response-modal/response-modal.service";
@@ -154,4 +154,12 @@ export class TableGenericComponent implements OnInit {
   detail = (row: any) => {
     this.detailRow.emit(row);
   };
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.rows.filter = filterValue.trim().toLowerCase();
+  }
+
+
 }
+

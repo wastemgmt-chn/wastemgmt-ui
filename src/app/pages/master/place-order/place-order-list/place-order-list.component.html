@@ -1,3 +1,33 @@
+<div>
+  <form [formGroup]="filterForm">
+    <div class="modal-body">
+      <div class="row">
+          <div class="col-3">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label> From Date</mat-label>
+              <input matInput [matDatepicker]="fromPicker" formControlName="fromDate" />
+              <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+              <mat-datepicker #fromPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        <div class="col-3">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label> To Date</mat-label>
+            <input matInput [matDatepicker]="toPicker" formControlName="toDate" />
+            <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+            <mat-datepicker #toPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <button class="btn btn-primary" (click)="onSave()">Search</button>
+         </div>
+         <div style="margin-left:1%;">
+          <button class="btn btn-secondary" (click)="reset()">Reset</button>
+         </div>
+      </div>
+      </div>
+    </form>
+ </div>
 <table-generic [count]="count" [displayedColumns]="displayedColumns" [definedColumns]="definedColumns" [searchColumns]="searchColumns"
                [canShowSearch]="true" [data]="sellerTypes" [isAction]="true" [datatrigger]="datatrigger" (editRow)='edit($event)'
                (paginate)='onPaginate($event)' [isToggle]="true" (searchEvent)='onSearch($event)' [isDetail]="true" [isEdit]="true" (detailRow)="detail($event)">

@@ -29,7 +29,7 @@
 		<td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay?.length">
 			<div class="example-element-detail" *ngIf="element.bids?.data?.length" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
 				<div class="inner-table mat-elevation-z8" *ngIf="expandedElement">
-          <!-- <mat-form-field>
+           <!-- <mat-form-field>
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
           </mat-form-field> -->
           <table #innerTables mat-table #innerSort="matSort" [dataSource]="element.bids" matSort>

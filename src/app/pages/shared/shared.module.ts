@@ -16,6 +16,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DropdownSearchComponent } from './dropdown-search/dropdown-search.component';
+import { DynamicFormTemplateComponent } from './dynamic-forms/dynamic-form-template/dynamic-form-template.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   imports: [
@@ -59,7 +61,8 @@ import { DropdownSearchComponent } from './dropdown-search/dropdown-search.compo
     FileUploadComponent,
     SearchFilterComponent,
     SidebarComponent,
-    DropdownSearchComponent
+    DropdownSearchComponent,
+    FilterComponent
 
   ],
   declarations:[
@@ -73,7 +76,10 @@ import { DropdownSearchComponent } from './dropdown-search/dropdown-search.compo
     FileUploadComponent,
     SearchFilterComponent,
     SidebarComponent,
-    DropdownSearchComponent
+    DynamicFormTemplateComponent,
+    DropdownSearchComponent,
+    FilterComponent
+
 ],
   entryComponents: [ActionPopupComponent],
   providers: [ResponseModalService],

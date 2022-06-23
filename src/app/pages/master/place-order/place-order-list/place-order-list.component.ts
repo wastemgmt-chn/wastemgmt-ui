@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ResponseModalService } from '../../../shared/response-modal/response-modal.service';
 import { DetailPageComponent } from '../detail-page/detail-page.component';
-import { PlaceOrderDetailPageComponent } from '../place-order-detail-page/place-order-detail-page.component';
 import { PlaceOrderService } from '../place-order.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class PlaceOrderListComponent implements OnInit {
   public datatrigger: EventEmitter<any> = new EventEmitter();
   displayedColumns: String [] = ["seller","buyer","latitude","longitude","isCompleted","actions"];
   searchColumns: any[] = [
-    { name: "name", canShow: false },
+    { name: "seller", canShow: true },
 
   ];
   definedColumns = ["seller","buyer","latitude","longitude","isCompleted"];
@@ -30,13 +30,20 @@ export class PlaceOrderListComponent implements OnInit {
   sellerTypes: any[] = [];
   filters: any[] = [];
   eventsSubscription: any;
+  filterForm:FormGroup;
 
   constructor(
     private placeOrderService: PlaceOrderService,
-    private responseModalService:ResponseModalService) { }
+    private responseModalService:ResponseModalService,
+    private fb:FormBuilder) { }
 
   ngOnInit() {
-    this.getBidsByOrder('4c31791e4e')
+
+      this.filterForm = this.fb.group({
+        fromDate: [""],
+        toDate: [""],
+      });
+
     this.eventsSubscription = this.events.subscribe((data) => {
       if (data != undefined) {
         this.filters.push(data);
@@ -45,11 +52,7 @@ export class PlaceOrderListComponent implements OnInit {
     });
     this.loadData();
   }
-  getBidsByOrder(id){
-    this.placeOrderService.getBidsByOrderId(id).toPromise().then((data:any)=>{
-      // console.log(data)
-    })
-  }
+
 
   loadData = () => {
     this.placeOrderService
@@ -74,8 +77,19 @@ export class PlaceOrderListComponent implements OnInit {
       this.placeOrderService.getOrderCollectionById(event).toPromise().then((data:any[])=>{
         this.responseModalService.openModalRight(DetailPageComponent,data);
       })
+  }
 
+  reset(){
+    this.filterForm.patchValue({
+      fromDate:null,
+      toDate:null
+    })
+    this.filters=[];
+    this.loadData();
+  }
 
+  focus(event){
+    alert("hai")
   }
 
 
@@ -83,6 +97,24 @@ export class PlaceOrderListComponent implements OnInit {
     this.filters = filters;
     this.loadData();
   };
+
+  getFilteredData=(data)=>{
+    // alert(JSON.stringify(data));
+    const filter = [{
+      key: data.key,
+      operation: ":",
+      orPredicate: false,
+      value: data.val,
+    }];
+   this.filters= filter;
+   this.loadData();
+  }
+
+  onSave(){
+   let data = this.filterForm.value;
+   this.getFilteredData(data);
+  }
+
 
 
 }

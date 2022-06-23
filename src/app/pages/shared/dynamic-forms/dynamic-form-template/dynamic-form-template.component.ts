@@ -18,9 +18,10 @@ export class DynamicFormTemplateComponent implements OnInit {
   constructor() { }
 
   ngOnInit = () => {
-    //if (this.childFormData.options.length > 0) {
+    console.log(this.childFormData);
+    // if (this.childFormData.options.length > 0) {
     //  this.filteredArray.next(this.datas.slice());
-    //}
+    // }
   }
 
   get isValid() {
@@ -30,6 +31,7 @@ export class DynamicFormTemplateComponent implements OnInit {
   onSave = () => {
     console.log(this.form.value());
   }
+
   public objectComparisonFunction = function (option, value): boolean {
     return option.id === value.id;
   }
