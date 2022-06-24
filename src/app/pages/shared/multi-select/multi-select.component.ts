@@ -46,6 +46,7 @@ export class MultiSelectComponent
   @Input() isMultiSelect: boolean = true;
   @Input() isSubmit: boolean;
   @Input() isRequired: boolean;
+  @Input()  appearance:string="fill";
   @Output() dropDownValueChange = new EventEmitter();
   @Input() dropDownId: any;
 

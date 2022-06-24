@@ -1,25 +1,48 @@
-<div>
+<div class="jumbotron">
+  <div class="container" style="height: 30px ; margin-top: -50px ;">
   <form [formGroup]="filterForm">
     <div class="modal-body">
       <div class="row">
-          <div class="col-3">
-            <mat-form-field appearance="fill" class="full-width">
+          <div class="col-lg-2">
+            <mat-form-field appearance="outline" style="width:95%">
               <mat-label> From Date</mat-label>
               <input matInput [matDatepicker]="fromPicker" formControlName="fromDate" />
               <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
               <mat-datepicker #fromPicker></mat-datepicker>
             </mat-form-field>
           </div>
-        <div class="col-3">
-          <mat-form-field appearance="fill" class="full-width">
+        <div class="col-lg-2">
+          <mat-form-field appearance="outline" style="width:95%">
             <mat-label> To Date</mat-label>
             <input matInput [matDatepicker]="toPicker" formControlName="toDate" />
             <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
             <mat-datepicker #toPicker></mat-datepicker>
           </mat-form-field>
         </div>
+        <div class="form-group col-lg-2">
+          <app-multi-select
+            #sellerMultiSelect
+            isMultiSelect="false"
+            [options]="sellers"
+            label="Seller"
+            isRequired="true"
+            [(dropDownValue)]="selectedSeller"
+            appearance="outline"
+          ></app-multi-select>
+        </div>
+        <div class="form-group col-lg-2">
+          <app-multi-select
+            #buyerMultiSelect
+            isMultiSelect="false"
+            [options]="buyers"
+            label="Buyer"
+            isRequired="true"
+            [(dropDownValue)]="selectedBuyer"
+            appearance="outline"
+          ></app-multi-select>
+        </div>
         <div>
-          <button class="btn btn-primary" (click)="onSave()">Search</button>
+          <button class="btn btn-primary" (click)="getFilter()">Search</button>
          </div>
          <div style="margin-left:1%;">
           <button class="btn btn-secondary" (click)="reset()">Reset</button>
@@ -27,6 +50,7 @@
       </div>
       </div>
     </form>
+  </div>
  </div>
 <table-generic [count]="count" [displayedColumns]="displayedColumns" [definedColumns]="definedColumns" [searchColumns]="searchColumns"
                [canShowSearch]="true" [data]="sellerTypes" [isAction]="true" [datatrigger]="datatrigger" (editRow)='edit($event)'
