@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
   public datatrigger: EventEmitter<any> = new EventEmitter();
   displayedColumns: string[] = ["name","Sub Category Name","actions"];
   definedColumns = ["name","subCategory"];
-  searchColumns: any[] = [{ name: "name", canShow: true }];
+  searchColumns: any[] = [{ name: "name", canShow: true },{ name: "subCategory", canShow: true }];
   postPerPage: number = 10;
   pageNumber: number = 1;
   count: number = 0;

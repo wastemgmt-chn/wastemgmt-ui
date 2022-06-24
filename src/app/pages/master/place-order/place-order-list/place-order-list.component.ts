@@ -1,8 +1,10 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ResponseModalService } from '../../../shared/response-modal/response-modal.service';
+import { UserService } from '../../user/user.service';
 import { DetailPageComponent } from '../detail-page/detail-page.component';
 import { PlaceOrderService } from '../place-order.service';
 
@@ -20,7 +22,9 @@ export class PlaceOrderListComponent implements OnInit {
   public datatrigger: EventEmitter<any> = new EventEmitter();
   displayedColumns: String [] = ["seller","buyer","latitude","longitude","isCompleted","actions"];
   searchColumns: any[] = [
-    { name: "seller", canShow: true },
+    { name: "seller.name", canShow: true },
+    { name: "buyer.name", canShow: false },
+    { name: "latitude", canShow: true },
 
   ];
   definedColumns = ["seller","buyer","latitude","longitude","isCompleted"];
@@ -31,17 +35,29 @@ export class PlaceOrderListComponent implements OnInit {
   filters: any[] = [];
   eventsSubscription: any;
   filterForm:FormGroup;
+  sellers:any=[];
+  buyers:any=[];
+
+  selectedSeller={};
+  selectedBuyer={};
+
+
 
   constructor(
     private placeOrderService: PlaceOrderService,
     private responseModalService:ResponseModalService,
-    private fb:FormBuilder) { }
+    private fb:FormBuilder,
+    private userService:UserService,
+    public datepipe: DatePipe
+    ) { }
 
   ngOnInit() {
-
+  this.getSellers();
       this.filterForm = this.fb.group({
         fromDate: [""],
         toDate: [""],
+        seller:[""],
+        buyer:[""]
       });
 
     this.eventsSubscription = this.events.subscribe((data) => {
@@ -51,6 +67,18 @@ export class PlaceOrderListComponent implements OnInit {
       this.loadData();
     });
     this.loadData();
+  }
+  getSellers=()=>{
+    this.userService.getAllUsers().toPromise().then((data:any[])=>{
+     const sellers=data.filter((obj) => {
+       return obj.userType === "seller";
+     });
+     const buyers=data.filter((obj) => {
+      return obj.userType === "buyer";
+      });
+     this.sellers=sellers;
+     this.buyers=buyers;
+    });
   }
 
 
@@ -82,8 +110,10 @@ export class PlaceOrderListComponent implements OnInit {
   reset(){
     this.filterForm.patchValue({
       fromDate:null,
-      toDate:null
+      toDate:null,
     })
+    this.selectedBuyer={};
+    this.selectedSeller={};
     this.filters=[];
     this.loadData();
   }
@@ -95,7 +125,8 @@ export class PlaceOrderListComponent implements OnInit {
 
   onSearch = (filters: any[]) => {
     this.filters = filters;
-    this.loadData();
+    console.log(filters);
+     this.loadData();
   };
 
   getFilteredData=(data)=>{
@@ -110,11 +141,35 @@ export class PlaceOrderListComponent implements OnInit {
    this.loadData();
   }
 
-  onSave(){
+  getFilter(){
+    this.filterForm.patchValue({
+      seller:this.selectedSeller,
+      buyer:this.selectedBuyer
+    })
    let data = this.filterForm.value;
-   this.getFilteredData(data);
+  data.toDate = this.datepipe.transform(
+    this.filterForm?.value?.toDate,
+    "MM/dd/yyyy"
+  );
+   console.log(data)
+
+   let buyer={
+    key:"latitude",
+    operation:':',
+    orPredicate: false,
+    value:13
+   }
+   let seller={
+    key:"seller.name",
+    operation:':',
+    orPredicate: false,
+    value:data.seller.name
+   }
+const filter = [];
+filter.push(buyer);
+filter.push(seller)
+ this.filters= filter;
+ this.loadData();
+
   }
-
-
-
 }
