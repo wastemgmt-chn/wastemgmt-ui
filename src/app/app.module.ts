@@ -5,7 +5,7 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
@@ -22,6 +22,9 @@ import {
 
 } from '@nebular/theme';
 import { SharedModule } from './pages/shared/shared.module';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { AuthGuard } from './pages/guard/auth.guard.ts.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,9 +44,30 @@ import { SharedModule } from './pages/shared/shared.module';
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    SharedModule
+    SharedModule,
+    KeycloakAngularModule
   ],
   bootstrap: [AppComponent],
+  providers:[
+    {
+     provide: APP_INITIALIZER,
+     useFactory: initializeKeycloak,
+     multi: true,
+     deps: [KeycloakService],
+    },
+  ]
 })
-export class AppModule {
-}
+export class AppModule {}
+function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: environment.loginUrl,
+        realm: environment.realm,
+        clientId: environment.clientId,
+      },
+      initOptions: {
+        onLoad: 'login-required'
+      },
+    });
+  }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {
   NbAuthComponent,
 } from '@nebular/auth';
+import { AdminGuard } from './pages/admin-guard/admin.guard';
 import { AuthGuard } from './pages/guard/auth.guard.ts.service';
 
 export const routes: Routes = [
@@ -10,7 +11,6 @@ export const routes: Routes = [
     path: 'pages',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
-      canActivate:[AuthGuard]
   },
   {
     path: 'auth',
@@ -25,10 +25,10 @@ export const routes: Routes = [
     ],
   },
   {
-    path: '', redirectTo: 'auth',
+    path: '', redirectTo: 'pages',
     pathMatch: 'full'
   },
-  { path: '**', redirectTo: 'auth' },
+  { path: '**', redirectTo: 'pages' },
 ]
 const config: ExtraOptions = {
   useHash: false,
