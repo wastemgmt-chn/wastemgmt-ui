@@ -48,6 +48,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 .inner-table {
   width: 100%;
+  background-color: grey !important;
 }
 
 .inner-table mat-form-field {

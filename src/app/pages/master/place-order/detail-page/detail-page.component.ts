@@ -32,20 +32,7 @@ export class DetailPageComponent implements OnInit {
   innerDisplayedColumns = ['buyer', 'seller', 'weight','amount'];
   expandedElement: Order | null;
   ORDERS: Order[] = [];
-  bids=[
-    {
-      buyer:"dinesh" ,
-      seller:"hari" ,
-      weight: 23,
-      amount:23
-    },
-    {
-      buyer:"dinesh" ,
-      seller:"hari" ,
-      weight: 23,
-      amount:23
-    }
-  ]
+  bids=[ ]
 
 
   constructor(

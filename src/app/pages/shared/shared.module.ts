@@ -17,7 +17,6 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DropdownSearchComponent } from './dropdown-search/dropdown-search.component';
 import { DynamicFormTemplateComponent } from './dynamic-forms/dynamic-form-template/dynamic-form-template.component';
-import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   imports: [
@@ -62,7 +61,6 @@ import { FilterComponent } from './filter/filter.component';
     SearchFilterComponent,
     SidebarComponent,
     DropdownSearchComponent,
-    FilterComponent
 
   ],
   declarations:[
@@ -78,7 +76,6 @@ import { FilterComponent } from './filter/filter.component';
     SidebarComponent,
     DynamicFormTemplateComponent,
     DropdownSearchComponent,
-    FilterComponent
 
 ],
   entryComponents: [ActionPopupComponent],

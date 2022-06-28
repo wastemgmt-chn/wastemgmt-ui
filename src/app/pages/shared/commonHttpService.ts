@@ -12,7 +12,6 @@ import { AppConfiguration } from "./AppConfiguration";
 import { throwError, of, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { CommonToastrService } from "./common-toastr/common-toastr.service";
-import { importExpr } from "@angular/compiler/src/output/output_ast";
 
 const httpOptions = {
   headers: new HttpHeaders({
